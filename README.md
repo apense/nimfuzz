@@ -1,4 +1,4 @@
-# nimfuzz
+# nimfuzz [![Build Status](https://travis-ci.org/apense/nimfuzz.svg?branch=master)](https://travis-ci.org/apense/nimfuzz)
 Simple and compact Nim fuzzing library based on the great 
 [fauxfactory](https://github.com/omaciel/fauxfactory). 
 The primary purpose of the library is to generate random strings to test the 
