@@ -1,3 +1,13 @@
+## 
+## Simple and compact Nim fuzzing library based on the great 
+## `fauxfactory <https://github.com/omaciel/fauxfactory>`_. 
+## The primary purpose of the library is to generate random strings to test the 
+## security of common utilities to help defend your system.
+## 
+## :Author: Jonathan Edwards
+## :Version: 1.0.0
+## :Copyright: 2015 Jonathan Edwards. Apache License 2.0
+## 
 
 import unicode
 import math
