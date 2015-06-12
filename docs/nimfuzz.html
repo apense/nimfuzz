@@ -1189,7 +1189,7 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
       <li><a class="reference" href="#genAlpha,"
     title="genAlpha*(length = 10): string"><wbr />gen<wbr />Alpha</a></li>
   <li><a class="reference" href="#genAlphanumeric,"
-    title="genAlphanumeric*(length = 10): string"><wbr />gen<wbr />Alphanumeric</a></li>
+    title="genAlphanumeric*(length = 10; upper = true): string"><wbr />gen<wbr />Alphanumeric</a></li>
   <li><a class="reference" href="#genChoice,openarray[T]"
     title="genChoice*[T](choices: openarray[T]): T"><wbr />gen<wbr />Choice</a></li>
   <li><a class="reference" href="#genBool,"
@@ -1199,7 +1199,7 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
   <li><a class="reference" href="#genCyrillic,"
     title="genCyrillic*(length = 10): string"><wbr />gen<wbr />Cyrillic</a></li>
   <li><a class="reference" href="#genEmail,string,string,string"
-    title="genEmail*(name, domain, tlds: string = &quot;&quot;): string"><wbr />gen<wbr />Email</a></li>
+    title="genEmail*(name, domain, tld: string = &quot;&quot;): string"><wbr />gen<wbr />Email</a></li>
   <li><a class="reference" href="#genIpsum,int"
     title="genIpsum*(words = 0; paragraphs: int): string"><wbr />gen<wbr />Ipsum</a></li>
   <li><a class="reference" href="#genLatin1,"
@@ -1243,7 +1243,7 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
 <dl class="item">
 <dt id="UnicodeLetters"><a name="UnicodeLetters"></a><pre><span class="Identifier">UnicodeLetters</span><span class="Operator">*</span> <span class="Other">=</span> <span class="Identifier">ch</span></pre></dt>
 <dd>
-
+Unicode characters from <cite>0</cite> to <cite>high(int16)</cite>
 
 </dd>
 
@@ -1253,37 +1253,37 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
 <dl class="item">
 <dt id="AsciiLower"><a name="AsciiLower"></a><pre><span class="Identifier">AsciiLower</span><span class="Operator">*</span> <span class="Other">=</span> <span class="StringLit">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span></pre></dt>
 <dd>
-
+Lowercase alphas
 
 </dd>
 <dt id="AsciiUpper"><a name="AsciiUpper"></a><pre><span class="Identifier">AsciiUpper</span><span class="Operator">*</span> <span class="Other">=</span> <span class="StringLit">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span></pre></dt>
 <dd>
-
+Uppercase alphas
 
 </dd>
 <dt id="AsciiLetters"><a name="AsciiLetters"></a><pre><span class="Identifier">AsciiLetters</span><span class="Operator">*</span> <span class="Other">=</span> <span class="Identifier">AsciiLower</span> <span class="Operator">&amp;</span> <span class="Identifier">AsciiUpper</span></pre></dt>
 <dd>
-
+All alphas
 
 </dd>
 <dt id="Digits"><a name="Digits"></a><pre><span class="Identifier">Digits</span><span class="Operator">*</span> <span class="Other">=</span> <span class="StringLit">&quot;0123456789&quot;</span></pre></dt>
 <dd>
-
+All digits
 
 </dd>
 <dt id="HexDigitsLower"><a name="HexDigitsLower"></a><pre><span class="Identifier">HexDigitsLower</span><span class="Operator">*</span> <span class="Other">=</span> <span class="Identifier">AsciiLower</span><span class="Other">[</span><span class="DecNumber">0</span> <span class="Operator">..</span> <span class="DecNumber">5</span><span class="Other">]</span> <span class="Operator">&amp;</span> <span class="Identifier">Digits</span></pre></dt>
 <dd>
-
+Lowercase hex digits
 
 </dd>
 <dt id="HexDigits"><a name="HexDigits"></a><pre><span class="Identifier">HexDigits</span><span class="Operator">*</span> <span class="Other">=</span> <span class="Identifier">AsciiUpper</span><span class="Other">[</span><span class="DecNumber">0</span> <span class="Operator">..</span> <span class="DecNumber">5</span><span class="Other">]</span> <span class="Operator">&amp;</span> <span class="Identifier">AsciiLower</span><span class="Other">[</span><span class="DecNumber">0</span> <span class="Operator">..</span> <span class="DecNumber">5</span><span class="Other">]</span> <span class="Operator">&amp;</span> <span class="Identifier">Digits</span></pre></dt>
 <dd>
-
+All hex digits
 
 </dd>
 <dt id="OctDigits"><a name="OctDigits"></a><pre><span class="Identifier">OctDigits</span><span class="Operator">*</span> <span class="Other">=</span> <span class="Identifier">Digits</span><span class="Other">[</span><span class="DecNumber">0</span> <span class="Operator">..</span> <span class="DecNumber">7</span><span class="Other">]</span></pre></dt>
 <dd>
-
+All octal digits
 
 </dd>
 
@@ -1293,62 +1293,68 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
 <dl class="item">
 <dt id="genAlpha"><a name="genAlpha,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genAlpha</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">length</span> <span class="Other">=</span> <span class="DecNumber">10</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
-
+Generates a <cite>length</cite>-long alphabetic string; All letters lowercase unless <cite>upper</cite> is true
 
 </dd>
-<dt id="genAlphanumeric"><a name="genAlphanumeric,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genAlphanumeric</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">length</span> <span class="Other">=</span> <span class="DecNumber">10</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
+<dt id="genAlphanumeric"><a name="genAlphanumeric,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genAlphanumeric</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">length</span> <span class="Other">=</span> <span class="DecNumber">10</span><span class="Other">;</span> <span class="Identifier">upper</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
-
+Generates a <cite>length</cite>-long alphanumeric string; All letters lowercase unless <cite>upper</cite> is true
 
 </dd>
 <dt id="genChoice"><a name="genChoice,openarray[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genChoice</span><span class="Operator">*</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">choices</span><span class="Other">:</span> <span class="Identifier">openarray</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
-
+Generates a random item from <cite>choices</cite>
 
 </dd>
 <dt id="genBool"><a name="genBool,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genBool</span><span class="Operator">*</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
 <dd>
-
+Generates either <cite>true</cite> or <cite>false</cite>
 
 </dd>
 <dt id="genCjk"><a name="genCjk,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genCjk</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">length</span> <span class="Other">=</span> <span class="DecNumber">10</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
-Returns a random string made up of CJK characters
+Returns a random string made up of CJK characters<pre><span class="Identifier">echo</span> <span class="Identifier">genCjk</span><span class="Punctuation">(</span><span class="DecNumber">8</span><span class="Punctuation">)</span> <span class="Comment"># 鍖磎仓鰀襓被澙齪</span></pre>
 
 </dd>
 <dt id="genCyrillic"><a name="genCyrillic,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genCyrillic</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">length</span> <span class="Other">=</span> <span class="DecNumber">10</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
-Returns a random string made up of Cyrillic characters
+Returns a random string made up of Cyrillic characters<pre><span class="Identifier">echo</span> <span class="Identifier">genCyrillic</span><span class="Punctuation">(</span><span class="DecNumber">5</span><span class="Punctuation">)</span> <span class="Comment"># &quot;ЋӅДӈҧ&quot;</span></pre>
 
 </dd>
-<dt id="genEmail"><a name="genEmail,string,string,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genEmail</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">name</span><span class="Other">,</span> <span class="Identifier">domain</span><span class="Other">,</span> <span class="Identifier">tlds</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
+<dt id="genEmail"><a name="genEmail,string,string,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genEmail</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">name</span><span class="Other">,</span> <span class="Identifier">domain</span><span class="Other">,</span> <span class="Identifier">tld</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
-
+Generates a random email address<pre><span class="Identifier">echo</span> <span class="Identifier">genEmail</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Comment"># lenPFfhV@example.gov</span>
+<span class="Identifier">echo</span> <span class="Identifier">genEmail</span><span class="Punctuation">(</span><span class="Identifier">domain</span> <span class="Operator">=</span> <span class="Identifier">genAlpha</span><span class="Punctuation">(</span><span class="DecNumber">6</span><span class="Punctuation">)</span><span class="Punctuation">)</span> <span class="Comment"># sRISqUvc@QazEsO.gov</span></pre>
 
 </dd>
 <dt id="genIpsum"><a name="genIpsum,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genIpsum</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">words</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">;</span> <span class="Identifier">paragraphs</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
-
+Generate a custom version of the classic nonsense Lorem Ipsum text
 
 </dd>
 <dt id="genLatin1"><a name="genLatin1,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genLatin1</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">length</span> <span class="Other">=</span> <span class="DecNumber">10</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
-Returns a random string made up of UTF-8 characters
+Returns a random string made up of UTF-8 characters<pre><span class="Identifier">echo</span> <span class="Identifier">genLatin1</span><span class="Punctuation">(</span><span class="DecNumber">20</span><span class="Punctuation">)</span> <span class="Comment"># ãÄñäÒ÷ûÿßôüàêÖÈéáòûÎ</span></pre>
 
 </dd>
 <dt id="genIpaddr"><a name="genIpaddr,seq[string]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genIpaddr</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">ip3</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">ipv6</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">prefix</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
-Generates a random IP address
+Generates a random IP address<pre><span class="Identifier">echo</span> <span class="Identifier">genIpaddr</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Comment"># 65.62.237.168</span>
+<span class="Identifier">echo</span> <span class="Identifier">genIpaddr</span><span class="Punctuation">(</span><span class="Identifier">ipv6</span> <span class="Operator">=</span> <span class="Identifier">true</span><span class="Punctuation">)</span> <span class="Comment"># 076d:5c0d:6ced:2649:b44b:af26:7b06:8db3</span>
+<span class="Identifier">echo</span> <span class="Identifier">genIpaddr</span><span class="Punctuation">(</span><span class="Identifier">prefix</span> <span class="Operator">=</span> <span class="Punctuation">[</span><span class="StringLit">&quot;this&quot;</span><span class="Punctuation">]</span><span class="Punctuation">)</span> <span class="Comment"># this.141.204.179</span>
+<span class="Comment"># Making sure it makes sense is up to you ;-)</span></pre>
 
 </dd>
 <dt id="genIpaddr"><a name="genIpaddr,openarray[int]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genIpaddr</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">ip3</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">ipv6</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">prefix</span><span class="Other">:</span> <span class="Identifier">openarray</span><span class="Other">[</span><span class="Identifier">int</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
-
+Generates a random IP address with a given prefix<pre><span class="Identifier">echo</span> <span class="Identifier">genIpaddr</span><span class="Punctuation">(</span><span class="Identifier">prefix</span> <span class="Operator">=</span> <span class="Punctuation">[</span><span class="DecNumber">10</span><span class="Punctuation">]</span><span class="Punctuation">)</span> <span class="Comment"># 10.163.127.20</span>
+<span class="Identifier">echo</span> <span class="Identifier">genIpaddr</span><span class="Punctuation">(</span><span class="Identifier">prefix</span> <span class="Operator">=</span> <span class="Punctuation">[</span><span class="DecNumber">10</span><span class="Punctuation">,</span><span class="DecNumber">3</span><span class="Punctuation">]</span><span class="Punctuation">)</span> <span class="Comment"># 10.3.251.78</span>
+<span class="Identifier">echo</span> <span class="Identifier">genIpaddr</span><span class="Punctuation">(</span><span class="Identifier">prefix</span> <span class="Operator">=</span> <span class="Punctuation">[</span><span class="DecNumber">10</span><span class="Punctuation">,</span><span class="DecNumber">3</span><span class="Punctuation">]</span><span class="Punctuation">,</span> <span class="Identifier">ipv6</span> <span class="Operator">=</span> <span class="Identifier">true</span><span class="Punctuation">)</span> <span class="Comment"># 10:3:605d:b501:6cb5:4e1b:736c:f1c8</span></pre>
 
 </dd>
 <dt id="genMac"><a name="genMac,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genMac</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">delimiter</span> <span class="Other">=</span> <span class="StringLit">&quot;:&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
-Generates a random MAC address
+Generates a random MAC address with either ':' (default) or '-' as the delimiter<pre><span class="Identifier">echo</span> <span class="Identifier">genMac</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Comment"># 34:ed:50:7b:11:d1</span></pre>
 
 </dd>
 <dt id="genNetmask"><a name="genNetmask,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genNetmask</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">minCidr</span> <span class="Other">=</span> <span class="DecNumber">1</span><span class="Other">;</span> <span class="Identifier">maxCidr</span> <span class="Other">=</span> <span class="DecNumber">31</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
@@ -1363,17 +1369,19 @@ Returns a random string made up of numbers
 </dd>
 <dt id="genTime"><a name="genTime,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genTime</span><span class="Operator">*</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">TimeInfo</span></pre></dt>
 <dd>
-Generates a random time and returns a TimeInfo object
+Generates a random time and returns a TimeInfo object<pre><span class="Identifier">echo</span> <span class="Identifier">genTime</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Comment"># Mon Sep 22 03:43:47 2701</span></pre>
 
 </dd>
 <dt id="genUrl"><a name="genUrl,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genUrl</span><span class="Operator">*</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
-
+Generates a random URL
 
 </dd>
 <dt id="genUtf8"><a name="genUtf8,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genUtf8</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">length</span> <span class="Other">=</span> <span class="DecNumber">10</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
-Returns a random string made up of UTF-8 letters characters CJK seems to dominate the ranges, which makes sense
+<p>Returns a random string made up of UTF-8 letters characters</p>
+<p>CJK seems to dominate the ranges, which makes sense</p>
+
 
 </dd>
 <dt id="genHtml"><a name="genHtml,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genHtml</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">length</span> <span class="Other">=</span> <span class="DecNumber">10</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
@@ -1383,7 +1391,9 @@ Returns a random string made up of html characters
 </dd>
 <dt id="genUuid"><a name="genUuid,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genUuid</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">valid</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
-Returns a random UUID <cite>valid</cite> makes sure some of it makes sense. It doesn't actually make sure it lines up with valid UUID versions
+<p>Returns a random UUID</p>
+<p><cite>valid</cite> makes sure some of it makes sense. It doesn't actually make sure it lines up with valid UUID versions</p>
+
 
 </dd>
 
@@ -1396,7 +1406,7 @@ Returns a random UUID <cite>valid</cite> makes sure some of it makes sense. It d
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small>Made with Nim. Generated: 2015-06-11 19:33:30 UTC</small>
+        <small>Made with Nim. Generated: 2015-06-11 20:49:30 UTC</small>
       </div>
     </div>
   </div>
