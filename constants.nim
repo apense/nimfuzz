@@ -1,15 +1,15 @@
 
 const
-  Schemes = [
+  Schemes* = [ ## Valid URL schemes
     "http",
     "https",
     "ftp",
   ]
-  Subdomains = [
+  Subdomains* = [ ## Valid subdomains for URL and email
     "example",
     "test",
   ]
-  Tlds = [
+  Tlds* = [ ## Valid top-level domains for URL and email
     "biz",
     "com",
     "edu",
@@ -18,7 +18,7 @@ const
     "org"
   ]
 
-const LoremIpsum = 
+const LoremIpsum* = ## Lorem Ipsum text
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do " &
     "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad " &
     "minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip " &
@@ -27,7 +27,7 @@ const LoremIpsum =
     "sint occaecat cupidatat non proident, sunt in culpa qui officia " &
     "deserunt mollit anim id est laborum."
 
-const VALID_NETMASKS = [
+const ValidNetmasks* = [ ## Valid Netmasks
     "0.0.0.0",
     "128.0.0.0",
     "192.0.0.0",
@@ -64,7 +64,7 @@ const VALID_NETMASKS = [
   ]
 
 const
-  HtmlTags = [
+  HtmlTags* = [ ## Valid HTML tags
     "a", "abbr", "acronym", "address", "applet", "area", "b",
     "base", "basefont", "bdo", "big", "blink", "blockquote", "body", "br",
     "button", "caption", "center", "cite", "code", "col", "colgroup",
