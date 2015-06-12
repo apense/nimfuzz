@@ -1,22 +1,22 @@
 
 const
-  Schemes* = [ ## Valid URL schemes
+  Schemes* = [ 
     "http",
     "https",
     "ftp",
-  ]
-  Subdomains* = [ ## Valid subdomains for URL and email
+  ] ## Valid URL schemes
+  Subdomains* = [ 
     "example",
     "test",
-  ]
-  Tlds* = [ ## Valid top-level domains for URL and email
+  ] ## Valid subdomains for URL and email
+  Tlds* = [ 
     "biz",
     "com",
     "edu",
     "gov",
     "info",
     "org"
-  ]
+  ] ## Valid top-level domains for URL and email
 
 const LoremIpsum* = ## Lorem Ipsum text
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do " &
@@ -27,7 +27,7 @@ const LoremIpsum* = ## Lorem Ipsum text
     "sint occaecat cupidatat non proident, sunt in culpa qui officia " &
     "deserunt mollit anim id est laborum."
 
-const ValidNetmasks* = [ ## Valid Netmasks
+const ValidNetmasks* = [ 
     "0.0.0.0",
     "128.0.0.0",
     "192.0.0.0",
@@ -61,10 +61,10 @@ const ValidNetmasks* = [ ## Valid Netmasks
     "255.255.255.252",
     "255.255.255.254",
     "255.255.255.255",
-  ]
+  ] ## Valid Netmasks
 
 const
-  HtmlTags* = [ ## Valid HTML tags
+  HtmlTags* = [ 
     "a", "abbr", "acronym", "address", "applet", "area", "b",
     "base", "basefont", "bdo", "big", "blink", "blockquote", "body", "br",
     "button", "caption", "center", "cite", "code", "col", "colgroup",
@@ -78,4 +78,4 @@ const
     "select", "small", "span", "strike", "strong", "style", "sub",
     "sup", "table", "tbody", "td", "textarea", "tfoot", "th",
     "thead", "title", "tr", "tt", "u", "ul", "var",
-  ]
+  ] ## Valid HTML tags

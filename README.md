@@ -5,9 +5,7 @@ The primary purpose of the library is to generate random strings to test the
 security of common utilities to help defend your system.
 
 Most of the module is self-explanatory, and you can look through the 
-Nim-generated docs to see the available functions.
-
-See docs [here](https://apense.github.io/nimfuzz).
+[Nim-generated docs](https://apense.github.io/nimfuzz) to see the available functions.
 
 The available procedures so far are as follows:
   - [genAlpha](https://apense.github.io/nimfuzz/nimfuzz.html#genAlpha)
