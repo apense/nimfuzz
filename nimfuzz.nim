@@ -5,7 +5,7 @@
 ## security of common utilities to help defend your system.
 ##
 ## :Author: Jonathan Edwards
-## :Version: 1.0.0
+## :Version: 1.1.0
 ## :Copyright: 2015 Jonathan Edwards. Apache License 2.0
 ##
 
