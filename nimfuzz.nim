@@ -35,7 +35,7 @@ const
 for i in unicodeLettersGenerator():
   ch.add(i)
 
-let UnicodeLetters* = ch ## Unicode characters from `0` to `high(int16)`
+let UnicodeLetters* = ch ## Unicode characters from `0` to `0x10ffff`
 
 proc runeInRange(s: string): Rune =
   result = runeAt(s, random(len(s)))
