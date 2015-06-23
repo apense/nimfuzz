@@ -1167,7 +1167,22 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
   <a class="reference reference-toplevel" href="#10" id="60">Consts</a>
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#Schemes"
-    title="Schemes = [&quot;http&quot;, &quot;https&quot;, &quot;ftp&quot;]"><wbr />Schemes</a></li>
+    title="Schemes = [&quot;ftp&quot;, &quot;sftp&quot;, &quot;http&quot;, &quot;https&quot;]"><wbr />Schemes</a></li>
+  <li><a class="reference" href="#ExSchemes"
+    title="ExSchemes = [&quot;aaa&quot;, &quot;aaas&quot;, &quot;about&quot;, &quot;acap&quot;, &quot;acct&quot;, &quot;cap&quot;, &quot;cid&quot;, &quot;coap&quot;, 
+             &quot;coaps&quot;, &quot;crid&quot;, &quot;data&quot;, &quot;dav&quot;, &quot;dict&quot;, &quot;dns&quot;, &quot;example&quot;, &quot;file&quot;, 
+             &quot;ftp&quot;, &quot;sftp&quot;, &quot;geo&quot;, &quot;go&quot;, &quot;gopher&quot;, &quot;h323&quot;, &quot;http&quot;, &quot;https&quot;, 
+             &quot;iax&quot;, &quot;icap&quot;, &quot;im&quot;, &quot;imap&quot;, &quot;info&quot;, &quot;ipp&quot;, &quot;ipps&quot;, &quot;iris&quot;, 
+             &quot;iris.beep&quot;, &quot;iris.xpc&quot;, &quot;iris.xpcs&quot;, &quot;iris.lws&quot;, &quot;jabber&quot;, &quot;ldap&quot;, 
+             &quot;mailto&quot;, &quot;mid&quot;, &quot;msrp&quot;, &quot;msrps&quot;, &quot;mtqp&quot;, &quot;mupdate&quot;, &quot;news&quot;, &quot;nfs&quot;, 
+             &quot;ni&quot;, &quot;nih&quot;, &quot;nntp&quot;, &quot;opaquelocktoken&quot;, &quot;pkcs11&quot;, &quot;pop&quot;, &quot;pres&quot;, 
+             &quot;reload&quot;, &quot;rtsp&quot;, &quot;service&quot;, &quot;session&quot;, &quot;shttp&quot;, &quot;sieve&quot;, &quot;sip&quot;, 
+             &quot;sips&quot;, &quot;sms&quot;, &quot;snmp&quot;, &quot;soap.beep&quot;, &quot;soap.beeps&quot;, &quot;stun&quot;, &quot;stuns&quot;, 
+             &quot;tag&quot;, &quot;tel&quot;, &quot;telnet&quot;, &quot;tftp&quot;, &quot;thismessage&quot;, &quot;tn3270&quot;, &quot;tip&quot;, 
+             &quot;turn&quot;, &quot;turns&quot;, &quot;tv&quot;, &quot;urn&quot;, &quot;vemmi&quot;, &quot;ws&quot;, &quot;wss&quot;, &quot;xcon&quot;, 
+             &quot;xcon-userid&quot;, &quot;xmlrpc.beep&quot;, &quot;xmlrpc.beeps&quot;, &quot;xmpp&quot;, &quot;z39.50r&quot;, 
+             &quot;z39.50s&quot;, &quot;app&quot;, &quot;doi&quot;, &quot;javascript&quot;, &quot;jdbc&quot;, &quot;odbc&quot;, &quot;stratum&quot;, 
+             &quot;vnc&quot;, &quot;web&quot;]"><wbr />Ex<wbr />Schemes</a></li>
   <li><a class="reference" href="#Subdomains"
     title="Subdomains = [&quot;example&quot;, &quot;test&quot;]"><wbr />Subdomains</a></li>
   <li><a class="reference" href="#Tlds"
@@ -1249,13 +1264,15 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
   <li><a class="reference" href="#genTime,"
     title="genTime(): TimeInfo"><wbr />gen<wbr />Time</a></li>
   <li><a class="reference" href="#genUrl,"
-    title="genUrl(): string"><wbr />gen<wbr />Url</a></li>
+    title="genUrl(extended = false): string"><wbr />gen<wbr />Url</a></li>
   <li><a class="reference" href="#genUtf8,int"
     title="genUtf8(length = 10): string"><wbr />gen<wbr />Utf8</a></li>
   <li><a class="reference" href="#genHtml,int"
     title="genHtml(length = 10): string"><wbr />gen<wbr />Html</a></li>
   <li><a class="reference" href="#genUuid,"
     title="genUuid(valid = true): string"><wbr />gen<wbr />Uuid</a></li>
+  <li><a class="reference" href="#asBytes,string"
+    title="asBytes(s: string): seq[byte]"><wbr />as<wbr />Bytes</a></li>
 
   </ul>
 </li>
@@ -1264,10 +1281,11 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
 
   </div>
   <div class="nine columns" id="content">
-  <p class="module-desc">Simple and compact Nim fuzzing library based on the great <a class="reference external" href="https://github.com/omaciel/fauxfactory">fauxfactory</a>. The primary purpose of the library is to generate random strings to test the security of common utilities to help defend your system.<table class="docinfo" frame="void" rules="none"><col class="docinfo-name" /><col class="docinfo-content" /><tbody valign="top"><tr><th class="docinfo-name">Author:</th><td> Jonathan Edwards</td></tr>
+  <p class="module-desc"><blockquote><p>Simple and compact Nim fuzzing library based on the great <a class="reference external" href="https://github.com/omaciel/fauxfactory">fauxfactory</a>. The primary purpose of the library is to generate random strings to test the security of common utilities to help defend your system.<table class="docinfo" frame="void" rules="none"><col class="docinfo-name" /><col class="docinfo-content" /><tbody valign="top"><tr><th class="docinfo-name">Author:</th><td> Jonathan Edwards</td></tr>
 <tr><th class="docinfo-name">Version:</th><td> 1.0.0</td></tr>
 <tr><th class="docinfo-name">Copyright:</th><td> 2015 Jonathan Edwards. Apache License 2.0</td></tr>
-</tbody></table></p>
+</tbody></table></p></blockquote>
+</p>
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
@@ -1286,9 +1304,27 @@ Unicode characters from <cite>0</cite> to <cite>high(int16)</cite>
 <div class="section" id="10">
 <h1><a class="toc-backref" href="#10">Consts</a></h1>
 <dl class="item">
-<dt id="Schemes"><a name="Schemes"></a><pre><span class="Identifier">Schemes</span> <span class="Other">=</span> <span class="Other">[</span><span class="StringLit">&quot;http&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;https&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;ftp&quot;</span><span class="Other">]</span></pre></dt>
+<dt id="Schemes"><a name="Schemes"></a><pre><span class="Identifier">Schemes</span> <span class="Other">=</span> <span class="Other">[</span><span class="StringLit">&quot;ftp&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;sftp&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;http&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;https&quot;</span><span class="Other">]</span></pre></dt>
 <dd>
-Valid URL schemes
+
+
+</dd>
+<dt id="ExSchemes"><a name="ExSchemes"></a><pre><span class="Identifier">ExSchemes</span> <span class="Other">=</span> <span class="Other">[</span><span class="StringLit">&quot;aaa&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;aaas&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;about&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;acap&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;acct&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;cap&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;cid&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;coap&quot;</span><span class="Other">,</span> 
+             <span class="StringLit">&quot;coaps&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;crid&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;data&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;dav&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;dict&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;dns&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;example&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;file&quot;</span><span class="Other">,</span> 
+             <span class="StringLit">&quot;ftp&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;sftp&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;geo&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;go&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;gopher&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;h323&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;http&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;https&quot;</span><span class="Other">,</span> 
+             <span class="StringLit">&quot;iax&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;icap&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;im&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;imap&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;info&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;ipp&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;ipps&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;iris&quot;</span><span class="Other">,</span> 
+             <span class="StringLit">&quot;iris.beep&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;iris.xpc&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;iris.xpcs&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;iris.lws&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;jabber&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;ldap&quot;</span><span class="Other">,</span> 
+             <span class="StringLit">&quot;mailto&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;mid&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;msrp&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;msrps&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;mtqp&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;mupdate&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;news&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;nfs&quot;</span><span class="Other">,</span> 
+             <span class="StringLit">&quot;ni&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;nih&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;nntp&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;opaquelocktoken&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;pkcs11&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;pop&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;pres&quot;</span><span class="Other">,</span> 
+             <span class="StringLit">&quot;reload&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;rtsp&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;service&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;session&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;shttp&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;sieve&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;sip&quot;</span><span class="Other">,</span> 
+             <span class="StringLit">&quot;sips&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;sms&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;snmp&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;soap.beep&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;soap.beeps&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;stun&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;stuns&quot;</span><span class="Other">,</span> 
+             <span class="StringLit">&quot;tag&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;tel&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;telnet&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;tftp&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;thismessage&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;tn3270&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;tip&quot;</span><span class="Other">,</span> 
+             <span class="StringLit">&quot;turn&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;turns&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;tv&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;urn&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;vemmi&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;ws&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;wss&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;xcon&quot;</span><span class="Other">,</span> 
+             <span class="StringLit">&quot;xcon-userid&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;xmlrpc.beep&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;xmlrpc.beeps&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;xmpp&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;z39.50r&quot;</span><span class="Other">,</span> 
+             <span class="StringLit">&quot;z39.50s&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;app&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;doi&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;javascript&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;jdbc&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;odbc&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;stratum&quot;</span><span class="Other">,</span> 
+             <span class="StringLit">&quot;vnc&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;web&quot;</span><span class="Other">]</span></pre></dt>
+<dd>
+Extended but permanent valid URL schemes
 
 </dd>
 <dt id="Subdomains"><a name="Subdomains"></a><pre><span class="Identifier">Subdomains</span> <span class="Other">=</span> <span class="Other">[</span><span class="StringLit">&quot;example&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;test&quot;</span><span class="Other">]</span></pre></dt>
@@ -1459,9 +1495,9 @@ Returns a random string made up of numbers
 Generates a random time and returns a TimeInfo object<pre><span class="Identifier">echo</span> <span class="Identifier">genTime</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Comment"># Mon Sep 22 03:43:47 2701</span></pre>
 
 </dd>
-<dt id="genUrl"><a name="genUrl,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genUrl</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">{.</span><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">.}</span></pre></dt>
+<dt id="genUrl"><a name="genUrl,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genUrl</span><span class="Other">(</span><span class="Identifier">extended</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">{.</span><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">.}</span></pre></dt>
 <dd>
-Generates a random URL
+Generates a random URL. If <cite>extended</cite> is true, the URL scheme is generated from <cite>ExSchemes</cite> instead of <cite>Schemes</cite>
 
 </dd>
 <dt id="genUtf8"><a name="genUtf8,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genUtf8</span><span class="Other">(</span><span class="Identifier">length</span> <span class="Other">=</span> <span class="DecNumber">10</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">{.</span><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">.}</span></pre></dt>
@@ -1483,6 +1519,12 @@ Returns a random string made up of html characters
 
 
 </dd>
+<dt id="asBytes"><a name="asBytes,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">asBytes</span><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">byte</span><span class="Other">]</span> <span class="Other">{.</span><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">.}</span></pre></dt>
+<dd>
+Output some string as a byte sequence This can be combined with most of the fuzzing functions<pre><span class="Identifier">echo</span> <span class="Identifier">genUtf8</span><span class="Punctuation">(</span><span class="DecNumber">2</span><span class="Punctuation">)</span><span class="Operator">.</span><span class="Identifier">asBytes</span>
+<span class="Comment"># returns @[229, 137, 145, 229, 191, 131]</span></pre>
+
+</dd>
 
 </dl></div>
 
@@ -1493,7 +1535,7 @@ Returns a random string made up of html characters
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small>Made with Nim. Generated: 2015-06-12 14:31:33 UTC</small>
+        <small>Made with Nim. Generated: 2015-06-23 14:57:21 UTC</small>
       </div>
     </div>
   </div>

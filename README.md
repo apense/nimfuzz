@@ -30,6 +30,6 @@ The available procedures so far are as follows:
 Most functions return a `string`. See the 
 [docs](https://apense.github.io/nimfuzz) for details
 
-Nim implementation copyright 2015 Jonathan Edwards
+Nim implementation 2015 Jonathan Edwards
 
 Fauxfactory Copyright 2014 Og Maciel

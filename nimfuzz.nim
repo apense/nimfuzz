@@ -1,13 +1,13 @@
-## 
-## Simple and compact Nim fuzzing library based on the great 
-## `fauxfactory <https://github.com/omaciel/fauxfactory>`_. 
-## The primary purpose of the library is to generate random strings to test the 
+##
+## Simple and compact Nim fuzzing library based on the great
+## `fauxfactory <https://github.com/omaciel/fauxfactory>`_.
+## The primary purpose of the library is to generate random strings to test the
 ## security of common utilities to help defend your system.
-## 
+##
 ## :Author: Jonathan Edwards
 ## :Version: 1.0.0
 ## :Copyright: 2015 Jonathan Edwards. Apache License 2.0
-## 
+##
 
 import unicode
 import math
@@ -16,8 +16,8 @@ import times
 
 include constants
 
-iterator unicodeLettersGenerator(): string {.closure.} = 
-  for i in 0..high(int16):
+iterator unicodeLettersGenerator(): string {.closure.} =
+  for i in 0..0x10ffff:
     if isAlpha(Rune(i)):
       yield $(Rune(i))
 
@@ -58,17 +58,13 @@ proc genAlphanumeric*(length = 10, upper = true): string =
   ## All letters lowercase unless `upper` is true
   if upper:
     result = gensa(AsciiLower & Digits, length)
-  else: 
+  else:
     result = gensa(AsciiLetters & Digits, length)
 
 proc genChoice*[T](choices: openarray[T]): T =
   ## Generates a random item from `choices`
   assert(len(choices) >= 1, "choices cannot be empty")
-
-  if len(choices) == 1:
-    result = choices[0]
-  else:
-    result = choices[random(len(choices))]
+  result = random(choices)
 
 proc randInRange(min, max: int): int {.inline.} =
   result = random(max - min + 1) + min
@@ -96,27 +92,27 @@ proc genUniInRange(low, high: int, exceptFor: openarray[int],
 
 proc genCjk*(length = 10): string =
   ## Returns a random string made up of CJK characters
-  ## 
+  ##
   ## .. code-block:: nim
   ##  echo genCjk(8) # 鍖磎仓鰀襓被澙齪
-  ## 
+  ##
   result = genUniInRange(0x4e00, 0x9fcc, length)
 
 proc genCyrillic*(length = 10): string =
   ## Returns a random string made up of Cyrillic characters
-  ## 
+  ##
   ## .. code-block:: nim
   ##  echo genCyrillic(5) # "ЋӅДӈҧ"
-  ## 
+  ##
   result = genUniInRange(0x0400, 0x04ff, length)
 
 proc genEmail*(name, domain, tld: string = ""): string =
   ## Generates a random email address
-  ## 
+  ##
   ## .. code-block:: nim
   ##  echo genEmail() # lenPFfhV@example.gov
   ##  echo genEmail(domain = genAlpha(6)) # sRISqUvc@QazEsO.gov
-  ## 
+  ##
   var (nm,dm,tl) = (name, domain, tld)
   # get a new name if we need it
   if nm == "":
@@ -170,23 +166,23 @@ proc genIpsum*(words = 0, paragraphs: int): string =
 
 proc genLatin1*(length = 10): string =
   ## Returns a random string made up of UTF-8 characters
-  ## 
+  ##
   ## .. code-block:: nim
   ##  echo genLatin1(20) # ãÄñäÒ÷ûÿßôüàêÖÈéáòûÎ
-  ## 
+  ##
   assert(length > 0)
 
   result = genUniInRange(0x00c0,0x00ff,[0x00d7,0x00f7],length)
 
 proc genIpaddr*(ip3 = false, ipv6 = false, prefix: seq[string] = nil): string =
   ## Generates a random IP address
-  ## 
+  ##
   ## .. code-block:: nim
   ##  echo genIpaddr() # 65.62.237.168
   ##  echo genIpaddr(ipv6 = true) # 076d:5c0d:6ced:2649:b44b:af26:7b06:8db3
   ##  echo genIpaddr(prefix = ["this"]) # this.141.204.179
   ##  # Making sure it makes sense is up to you ;-)
-  ## 
+  ##
   var rng: int
   if ipv6:
     rng = 8
@@ -225,7 +221,7 @@ proc genIpaddr*(ip3 = false, ipv6 = false, prefix: seq[string] = nil): string =
 
 proc genIpaddr*(ip3 = false, ipv6 = false, prefix: openarray[int]): string =
   ## Generates a random IP address with a given prefix
-  ## 
+  ##
   ## .. code-block:: nim
   ##  echo genIpaddr(prefix = [10]) # 10.163.127.20
   ##  echo genIpaddr(prefix = [10,3]) # 10.3.251.78
@@ -238,10 +234,10 @@ proc genIpaddr*(ip3 = false, ipv6 = false, prefix: openarray[int]): string =
 proc genMac*(delimiter = ":"): string =
   ## Generates a random MAC address with either ':' (default)
   ## or '-' as the delimiter
-  ## 
+  ##
   ## .. code-block:: nim
   ##  echo genMac() # 34:ed:50:7b:11:d1
-  ## 
+  ##
   assert (delimiter in ":-", "Delimiter not valid")
   let chars = HexDigitsLower
   result = ""
@@ -266,10 +262,10 @@ proc genNumericString*(length = 10): string =
 
 proc genTime*(): TimeInfo =
   ## Generates a random time and returns a TimeInfo object
-  ## 
+  ##
   ## .. code-block::nim
   ##  echo genTime() # Mon Sep 22 03:43:47 2701
-  ## 
+  ##
   var ti = TimeInfo(
     second: random(59),
     minute: random(59),
@@ -285,9 +281,11 @@ proc genTime*(): TimeInfo =
   )
   result = ti
 
-proc genUrl*(): string =
-  ## Generates a random URL
-  let scheme = genChoice(Schemes)
+proc genUrl*(extended = false): string =
+  ## Generates a random URL. If `extended` is true, the URL scheme
+  ## is generated from `ExSchemes` instead of `Schemes`
+  var scheme:string
+  scheme = if extended: genChoice(ExSchemes) else: genChoice(Schemes)
   let subdomain = genChoice(Subdomains)
   let tld = genChoice(Tlds)
 
@@ -295,7 +293,7 @@ proc genUrl*(): string =
 
 proc genUtf8*(length = 10): string =
   ## Returns a random string made up of UTF-8 letters characters
-  ## 
+  ##
   ## CJK seems to dominate the ranges, which makes sense
   assert(length > 0)
   result = ""
@@ -311,18 +309,18 @@ proc genHtml*(length = 10): string =
 
 proc genUuid*(valid = true): string =
   ## Returns a random UUID
-  ## 
+  ##
   ## `valid` makes sure some of it makes sense. It doesn't actually make
   ## sure it lines up with valid UUID versions
   let
     part1 = gensa(HexDigitsLower, 8)
     part2 = gensa(HexDigitsLower, 4)
     part5 = gensa(HexDigitsLower, 12)
-    
+
   var part3, part4: string
 
   if valid:
-    part3 = genChoice(['1','2','3','4','5']) & 
+    part3 = genChoice(['1','2','3','4','5']) &
             gensa(HexDigitsLower, 3)
   else:
     part3 = gensa(HexDigitsLower, 4)
@@ -335,3 +333,16 @@ proc genUuid*(valid = true): string =
 
   let allParts = [part1, part2, part3, part4, part5]
   result = join(allParts, "-")
+
+proc asBytes*(s: string): seq[byte] =
+  ## Output some string as a byte sequence
+  ## This can be combined with most of the fuzzing functions
+  ##
+  ## .. code-block:: nim
+  ##  echo genUtf8(2).asBytes
+  ##  # returns @[229, 137, 145, 229, 191, 131]
+  result = newSeq[byte]()
+  for i in s:
+    result.add(ord(i).byte)
+
+randomize()

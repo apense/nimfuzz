@@ -1,15 +1,49 @@
 
 const
-  Schemes* = [ 
+  Schemes* = [
+    "ftp",
+    "sftp",
     "http",
     "https",
-    "ftp",
-  ] ## Valid URL schemes
-  Subdomains* = [ 
+  ]
+  ExSchemes* = [
+    "aaa","aaas","about","acap","acct",
+    "cap","cid","coap","coaps","crid",
+    "data","dav","dict","dns",
+    "example",
+    "file","ftp","sftp",
+    "geo","go","gopher",
+    "h323","http","https",
+    "iax","icap","im","imap","info","ipp","ipps","iris","iris.beep","iris.xpc","iris.xpcs","iris.lws",
+    "jabber",
+    "ldap",
+    "mailto","mid","msrp","msrps","mtqp","mupdate",
+    "news","nfs","ni","nih","nntp",
+    "opaquelocktoken",
+    "pkcs11","pop","pres",
+    "reload","rtsp",
+    "service","session","shttp","sieve","sip","sips","sms","snmp",
+    "soap.beep","soap.beeps","stun","stuns",
+    "tag","tel","telnet","tftp","thismessage","tn3270",
+    "tip","turn","turns","tv",
+    "urn",
+    "vemmi",
+    "ws","wss",
+    "xcon","xcon-userid","xmlrpc.beep","xmlrpc.beeps","xmpp",
+    "z39.50r","z39.50s",
+    "app",
+    "doi",
+    "javascript","jdbc",
+    "odbc",
+    "stratum",
+    "vnc",
+    "web",
+  ] ## Extended but permanent valid URL schemes
+  Subdomains* = [
     "example",
     "test",
   ] ## Valid subdomains for URL and email
-  Tlds* = [ 
+  Tlds* = [
     "biz",
     "com",
     "edu",
@@ -27,7 +61,7 @@ const LoremIpsum* = ## Lorem Ipsum text
     "sint occaecat cupidatat non proident, sunt in culpa qui officia " &
     "deserunt mollit anim id est laborum."
 
-const ValidNetmasks* = [ 
+const ValidNetmasks* = [
     "0.0.0.0",
     "128.0.0.0",
     "192.0.0.0",
@@ -64,7 +98,7 @@ const ValidNetmasks* = [
   ] ## Valid Netmasks
 
 const
-  HtmlTags* = [ 
+  HtmlTags* = [
     "a", "abbr", "acronym", "address", "applet", "area", "b",
     "base", "basefont", "bdo", "big", "blink", "blockquote", "body", "br",
     "button", "caption", "center", "cite", "code", "col", "colgroup",
