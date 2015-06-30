@@ -281,6 +281,7 @@ proc genNumericString*(length = 10): string {.noSideEffect.} =
   ##
   ## .. code-block:: nim
   ##  echo genNumericString() # 1740948824
+  ##
   assert(length > 0)
   result = ""
   for i in 0..<length:
@@ -311,7 +312,8 @@ proc genUrl*(extended = false): string {.noSideEffect.} =
   ## Generates a random URL. If `extended` is true, the URL scheme
   ## is generated from `ExSchemes` instead of `Schemes`
   ##
-  ## echo genUrl(extended = true) # msrps://test.info
+  ## .. code-block:: nim
+  ##  echo genUrl(extended = true) # msrps://test.info
   ##
   var scheme:string
   scheme = if extended: genChoice(ExSchemes) else: genChoice(Schemes)

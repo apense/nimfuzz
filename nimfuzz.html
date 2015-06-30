@@ -1507,9 +1507,7 @@ Generates a random time and returns a TimeInfo object<pre><span class="Identifie
 </dd>
 <dt id="genUrl"><a name="genUrl,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genUrl</span><span class="Other">(</span><span class="Identifier">extended</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">{.</span><span class="Identifier">noSideEffect</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">.}</span></pre></dt>
 <dd>
-<p>Generates a random URL. If <cite>extended</cite> is true, the URL scheme is generated from <cite>ExSchemes</cite> instead of <cite>Schemes</cite></p>
-<p>echo genUrl(extended = true) # msrps://test.info </p>
-
+Generates a random URL. If <cite>extended</cite> is true, the URL scheme is generated from <cite>ExSchemes</cite> instead of <cite>Schemes</cite><pre><span class="Identifier">echo</span> <span class="Identifier">genUrl</span><span class="Punctuation">(</span><span class="Identifier">extended</span> <span class="Operator">=</span> <span class="Identifier">true</span><span class="Punctuation">)</span> <span class="Comment"># msrps://test.info</span></pre>
 
 </dd>
 <dt id="genUtf8"><a name="genUtf8,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genUtf8</span><span class="Other">(</span><span class="Identifier">length</span> <span class="Other">=</span> <span class="DecNumber">10</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">{.</span><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">.}</span></pre></dt>
@@ -1547,7 +1545,7 @@ Output some string as a byte sequence This can be combined with most of the fuzz
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small>Made with Nim. Generated: 2015-06-30 01:10:46 UTC</small>
+        <small>Made with Nim. Generated: 2015-06-30 01:12:34 UTC</small>
       </div>
     </div>
   </div>
