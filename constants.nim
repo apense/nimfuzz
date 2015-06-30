@@ -5,7 +5,7 @@ const
     "sftp",
     "http",
     "https",
-  ]
+  ] ## Valid URL Schemes
   ExSchemes* = [
     "aaa","aaas","about","acap","acct",
     "cap","cid","coap","coaps","crid",
