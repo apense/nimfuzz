@@ -1414,13 +1414,13 @@ All octal digits
 <dl class="item">
 <dt id="genAlpha"><a name="genAlpha,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genAlpha</span><span class="Other">(</span><span class="Identifier">length</span> <span class="Other">=</span> <span class="DecNumber">10</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">{.</span><span class="Identifier">noSideEffect</span><span class="Other">,</span> <span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">.}</span></pre></dt>
 <dd>
-Generates a <cite>length</cite>-long alphabetic string; All letters lowercase unless <cite>upper</cite> is true
+Generates a <cite>length</cite>-long alphabetic string;<pre><span class="Identifier">echo</span> <span class="Identifier">genAlpha</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Comment"># PhQGHuMEAy</span></pre>
 
 </dd>
 <dt id="genAlphanumeric"><a name="genAlphanumeric,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genAlphanumeric</span><span class="Other">(</span><span class="Identifier">length</span> <span class="Other">=</span> <span class="DecNumber">10</span><span class="Other">;</span> <span class="Identifier">upper</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">{.</span><span class="Identifier">noSideEffect</span><span class="Other">,</span> 
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">.}</span></pre></dt>
 <dd>
-Generates a <cite>length</cite>-long alphanumeric string; All letters lowercase unless <cite>upper</cite> is true
+Generates a <cite>length</cite>-long alphanumeric string; All letters lowercase unless <cite>upper</cite> is true<pre><span class="Identifier">echo</span> <span class="Identifier">genAlphanumeric</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Comment"># f98er24s8u</span></pre>
 
 </dd>
 <dt id="genChoice"><a name="genChoice,openArray[T]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">genChoice</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">choices</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span> <span class="Other">{.</span><span class="Identifier">noSideEffect</span><span class="Other">.}</span></pre></dt>
@@ -1547,7 +1547,7 @@ Output some string as a byte sequence This can be combined with most of the fuzz
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small>Made with Nim. Generated: 2015-06-30 01:04:13 UTC</small>
+        <small>Made with Nim. Generated: 2015-06-30 01:10:46 UTC</small>
       </div>
     </div>
   </div>
