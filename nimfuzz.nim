@@ -50,12 +50,19 @@ proc gensa(s: string, length: int): string {.noSideEffect.} =
 
 proc genAlpha*(length = 10): string {.noSideEffect, inline.} =
   ## Generates a `length`-long alphabetic string;
-  ## All letters lowercase unless `upper` is true
+  ##
+  ## .. code-block:: nim
+  ##  echo genAlpha() # PhQGHuMEAy
+  ##
   result = gensa(AsciiLetters, length)
 
 proc genAlphanumeric*(length = 10, upper = true): string {.noSideEffect.} =
   ## Generates a `length`-long alphanumeric string;
   ## All letters lowercase unless `upper` is true
+  ##
+  ## .. code-block:: nim
+  ##  echo genAlphanumeric() # f98er24s8u
+  ##
   if upper:
     result = gensa(AsciiLower & Digits, length)
   else:
