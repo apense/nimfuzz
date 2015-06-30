@@ -251,7 +251,7 @@ proc genMac*(delimiter = ":"): string {.noSideEffect, inline.} =
   ##  echo genMac() # 34:ed:50:7b:11:d1
   ##
   assert (delimiter in ":-", "Delimiter not valid")
-  let chars = HexDigitsLower
+  #let chars = HexDigitsLower
   result = ""
 
   # this is a crappy way to do it, but i'm tired
