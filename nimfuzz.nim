@@ -49,7 +49,7 @@ proc gensa(s: string, length: int): string {.noSideEffect.} =
   result = $rseq
 
 proc genAlpha*(length = 10): string {.noSideEffect, inline.} =
-  ## Generates a `length`-long alphabetic string;
+  ## Generate a `length`-long alphabetic string;
   ##
   ## .. code-block:: nim
   ##  echo genAlpha() # PhQGHuMEAy
@@ -57,7 +57,7 @@ proc genAlpha*(length = 10): string {.noSideEffect, inline.} =
   result = gensa(AsciiLetters, length)
 
 proc genAlphanumeric*(length = 10, upper = true): string {.noSideEffect.} =
-  ## Generates a `length`-long alphanumeric string;
+  ## Generate a `length`-long alphanumeric string;
   ## All letters lowercase unless `upper` is true
   ##
   ## .. code-block:: nim
@@ -69,7 +69,7 @@ proc genAlphanumeric*(length = 10, upper = true): string {.noSideEffect.} =
     result = gensa(AsciiLetters & Digits, length)
 
 proc genChoice*[T](choices: openarray[T]): T {.noSideEffect.} =
-  ## Generates a random item from `choices`
+  ## Generate a random item from `choices`
   assert(len(choices) >= 1, "choices cannot be empty")
   result = random(choices)
 
@@ -98,7 +98,7 @@ proc genUniInRange(low, high: int, exceptFor: openarray[int],
   result = $rseq
 
 proc genCjk*(length = 10): string {.noSideEffect, inline.} =
-  ## Returns a random string made up of CJK characters
+  ## Generate a random string made up of CJK characters
   ##
   ## .. code-block:: nim
   ##  echo genCjk(8) # 鍖磎仓鰀襓被澙齪
@@ -106,7 +106,7 @@ proc genCjk*(length = 10): string {.noSideEffect, inline.} =
   result = genUniInRange(0x4e00, 0x9fcc, length)
 
 proc genCyrillic*(length = 10): string {.noSideEffect, inline.} =
-  ## Returns a random string made up of Cyrillic characters
+  ## Generate a random string made up of Cyrillic characters
   ##
   ## .. code-block:: nim
   ##  echo genCyrillic(5) # "ЋӅДӈҧ"
@@ -114,7 +114,7 @@ proc genCyrillic*(length = 10): string {.noSideEffect, inline.} =
   result = genUniInRange(0x0400, 0x04ff, length)
 
 proc genEmail*(name, domain, tld: string = ""): string {.noSideEffect.} =
-  ## Generates a random email address
+  ## Generate a random email address
   ##
   ## .. code-block:: nim
   ##  echo genEmail() # lenPFfhV@example.gov
@@ -180,7 +180,7 @@ proc genIpsum*(words = 0, paragraphs: int): string {.noSideEffect.} =
     inc startPos, words
 
 proc genLatin1*(length = 10): string {.noSideEffect, inline.} =
-  ## Returns a random string made up of UTF-8 characters
+  ## Generate a random string made up of UTF-8 characters
   ##
   ## .. code-block:: nim
   ##  echo genLatin1(20) # ãÄñäÒ÷ûÿßôüàêÖÈéáòûÎ
@@ -191,7 +191,7 @@ proc genLatin1*(length = 10): string {.noSideEffect, inline.} =
 
 proc genIpaddr*(ip3 = false, ipv6 = false,
   prefix: seq[string] = nil): string {.noSideEffect.} =
-  ## Generates a random IP address
+  ## Generate a random IP address
   ##
   ## .. code-block:: nim
   ##  echo genIpaddr() # 65.62.237.168
@@ -237,7 +237,7 @@ proc genIpaddr*(ip3 = false, ipv6 = false,
 
 proc genIpaddr*(ip3 = false, ipv6 = false,
   prefix: openarray[int]): string {.noSideEffect.} =
-  ## Generates a random IP address with a given prefix
+  ## Generate a random IP address with a given prefix
   ##
   ## .. code-block:: nim
   ##  echo genIpaddr(prefix = [10]) # 10.163.127.20
@@ -251,7 +251,7 @@ proc genIpaddr*(ip3 = false, ipv6 = false,
   result = genIpaddr(ip3, ipv6, pfx)
 
 proc genMac*(delimiter = ":"): string {.noSideEffect, inline.} =
-  ## Generates a random MAC address with either ':' (default)
+  ## Generate a random MAC address with either ':' (default)
   ## or '-' as the delimiter
   ##
   ## .. code-block:: nim
@@ -267,7 +267,7 @@ proc genMac*(delimiter = ":"): string {.noSideEffect, inline.} =
   result = result[0..^2]
 
 proc genNetmask*(minCidr = 1, maxCidr = 31): string{.noSideEffect.} =
-  ## Generates a random valid netmask
+  ## Generate a random valid netmask
   ##
   ## .. code-block:: nim
   ##  echo genNetmask() # 255.224.0.0
@@ -277,7 +277,7 @@ proc genNetmask*(minCidr = 1, maxCidr = 31): string{.noSideEffect.} =
   result = ValidNetmasks[randInRange(minCidr, maxCidr)]
 
 proc genNumericString*(length = 10): string {.noSideEffect.} =
-  ## Returns a random string made up of numbers
+  ## Generate a random string made up of numbers
   ##
   ## .. code-block:: nim
   ##  echo genNumericString() # 1740948824
@@ -288,7 +288,7 @@ proc genNumericString*(length = 10): string {.noSideEffect.} =
     result = result & genChoice(['0','1','2','3','4','5','6','7','8','9'])
 
 proc genTime*(): TimeInfo {.noSideEffect.} =
-  ## Generates a random time and returns a TimeInfo object
+  ## Generate a random time and returns a TimeInfo object
   ##
   ## .. code-block::nim
   ##  echo genTime() # Mon Sep 22 03:43:47 2701
@@ -308,22 +308,26 @@ proc genTime*(): TimeInfo {.noSideEffect.} =
   )
   result = ti
 
-proc genUrl*(extended = false): string {.noSideEffect.} =
-  ## Generates a random URL. If `extended` is true, the URL scheme
-  ## is generated from `ExSchemes` instead of `Schemes`
+proc genUrl*(extended = false, internationalized = false): string {.
+  noSideEffect.} =
+  ## Generate a random URL. If `extended` is true, the URL scheme
+  ## is generated from `ExSchemes` instead of `Schemes`. If
+  ## `internationalized` is true, generates URL with interationalized TLD.
   ##
   ## .. code-block:: nim
   ##  echo genUrl(extended = true) # msrps://test.info
+  ##  echo genUrl(true, true) # imap://example.新加坡
   ##
   var scheme:string
   scheme = if extended: genChoice(ExSchemes) else: genChoice(Schemes)
   let subdomain = genChoice(Subdomains)
-  let tld = genChoice(Tlds)
+  var tld = if internationalized: genChoice(InternationalTlds)
+            else: genChoice(Tlds)
 
   result = scheme & "://" & subdomain & "." & tld
 
 proc genUtf8*(length = 10): string =
-  ## Returns a random string made up of UTF-8 letters characters
+  ## Generate a random string made up of UTF-8 letters characters
   ##
   ## CJK seems to dominate the ranges, which makes sense
   ##
@@ -336,7 +340,7 @@ proc genUtf8*(length = 10): string =
     result.add(genChoice(UnicodeLetters))
 
 proc genHtml*(length = 10): string {.noSideEffect.} =
-  ## Returns a random string made up of html characters
+  ## Generate a random string made up of html characters
   ##
   ## .. code-block:: nim
   ##  echo genHtml() # <head>hQGHuMEAyL</head>
@@ -347,7 +351,7 @@ proc genHtml*(length = 10): string {.noSideEffect.} =
   result = "<$1>$2</$3>".format(htmlTag, genAlpha(length), htmlTag)
 
 proc genUuid*(valid = true): string {.noSideEffect.} =
-  ## Returns a random UUID
+  ## Generate a random UUID
   ##
   ## `valid` makes sure some of it makes sense. It doesn't actually make
   ## sure it lines up with valid UUID versions
