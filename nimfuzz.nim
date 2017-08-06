@@ -13,6 +13,7 @@ import unicode
 import math
 import strutils
 import times
+import random
 
 include constants
 
@@ -37,10 +38,10 @@ for i in unicodeLettersGenerator():
 
 let UnicodeLetters* = ch ## Unicode characters from `0` to `0x10ffff`
 
-proc runeInRange(s: string): Rune {.noSideEffect, inline.} =
+proc runeInRange(s: string): Rune {.inline.} =
   result = runeAt(s, random(len(s)))
 
-proc gensa(s: string, length: int): string {.noSideEffect.} =
+proc gensa(s: string, length: int): string =
   assert(length > 0)
   result = ""
   var rseq = newSeq[Rune]()
@@ -48,7 +49,7 @@ proc gensa(s: string, length: int): string {.noSideEffect.} =
     rseq.add(runeInRange(s))
   result = $rseq
 
-proc genAlpha*(length = 10): string {.noSideEffect, inline.} =
+proc genAlpha*(length = 10): string {.inline.} =
   ## Generate a `length`-long alphabetic string;
   ##
   ## .. code-block:: nim
@@ -56,7 +57,7 @@ proc genAlpha*(length = 10): string {.noSideEffect, inline.} =
   ##
   result = gensa(AsciiLetters, length)
 
-proc genAlphanumeric*(length = 10, upper = true): string {.noSideEffect.} =
+proc genAlphanumeric*(length = 10, upper = true): string =
   ## Generate a `length`-long alphanumeric string;
   ## All letters lowercase unless `upper` is true
   ##
@@ -68,19 +69,19 @@ proc genAlphanumeric*(length = 10, upper = true): string {.noSideEffect.} =
   else:
     result = gensa(AsciiLetters & Digits, length)
 
-proc genChoice*[T](choices: openarray[T]): T {.noSideEffect.} =
+proc genChoice*[T](choices: openarray[T]): T =
   ## Generate a random item from `choices`
   assert(len(choices) >= 1, "choices cannot be empty")
   result = random(choices)
 
-proc randInRange(min, max: int): int {.noSideEffect, inline.} =
+proc randInRange(min, max: int): int {.inline.} =
   result = random(max - min + 1) + min
 
-proc genBool*(): bool {.noSideEffect, inline.} =
+proc genBool*(): bool {.inline.} =
   ## Generates either `true` or `false`
   result = genChoice([true, false])
 
-proc genUniInRange(low, high, length: int): string {.noSideEffect, inline.} =
+proc genUniInRange(low, high, length: int): string {.inline.} =
   assert(length > 0)
   var rseq = newSeq[Rune](length)
   for i in 0..<length:
@@ -88,7 +89,7 @@ proc genUniInRange(low, high, length: int): string {.noSideEffect, inline.} =
   result = $rseq
 
 proc genUniInRange(low, high: int, exceptFor: openarray[int],
-    length: int): string {.noSideEffect, inline.} =
+    length: int): string {.inline.} =
   assert(length > 0)
   var rseq = newSeq[Rune](length)
   for i in 0..<length:
@@ -97,7 +98,7 @@ proc genUniInRange(low, high: int, exceptFor: openarray[int],
     rseq[i] = Rune(randInRange(low, high))
   result = $rseq
 
-proc genCjk*(length = 10): string {.noSideEffect, inline.} =
+proc genCjk*(length = 10): string {.inline.} =
   ## Generate a random string made up of CJK characters
   ##
   ## .. code-block:: nim
@@ -105,7 +106,7 @@ proc genCjk*(length = 10): string {.noSideEffect, inline.} =
   ##
   result = genUniInRange(0x4e00, 0x9fcc, length)
 
-proc genCyrillic*(length = 10): string {.noSideEffect, inline.} =
+proc genCyrillic*(length = 10): string {.inline.} =
   ## Generate a random string made up of Cyrillic characters
   ##
   ## .. code-block:: nim
@@ -113,7 +114,7 @@ proc genCyrillic*(length = 10): string {.noSideEffect, inline.} =
   ##
   result = genUniInRange(0x0400, 0x04ff, length)
 
-proc genEmail*(name, domain, tld: string = ""): string {.noSideEffect.} =
+proc genEmail*(name, domain, tld: string = ""): string =
   ## Generate a random email address
   ##
   ## .. code-block:: nim
@@ -133,7 +134,7 @@ proc genEmail*(name, domain, tld: string = ""): string {.noSideEffect.} =
 
   result = nm & "@" & dm & "." & tl
 
-proc genIpsum*(words = 0, paragraphs: int): string {.noSideEffect.} =
+proc genIpsum*(words = 0, paragraphs: int): string =
   ## Generate a custom version of the classic nonsense
   ## Lorem Ipsum text. `words` is the number of words per paragraph;
   ## `paragraphs` is the number of paragraphs overall
@@ -172,14 +173,14 @@ proc genIpsum*(words = 0, paragraphs: int): string {.noSideEffect.} =
     var frags = sentence.split(". ")
     var capSentence = newSeq[string]()
     for i in frags:
-      capSentence.add(i.capitalize())
+      capSentence.add(unicode.capitalize(i))
 
     # add newline at the end
     result &= join(capSentence, " ") & "\n"
 
     inc startPos, words
 
-proc genLatin1*(length = 10): string {.noSideEffect, inline.} =
+proc genLatin1*(length = 10): string {.inline.} =
   ## Generate a random string made up of UTF-8 characters
   ##
   ## .. code-block:: nim
@@ -190,7 +191,7 @@ proc genLatin1*(length = 10): string {.noSideEffect, inline.} =
   result = genUniInRange(0x00c0,0x00ff,[0x00d7,0x00f7],length)
 
 proc genIpaddr*(ip3 = false, ipv6 = false,
-  prefix: seq[string] = nil): string {.noSideEffect.} =
+  prefix: seq[string] = nil): string =
   ## Generate a random IP address
   ##
   ## .. code-block:: nim
@@ -224,7 +225,7 @@ proc genIpaddr*(ip3 = false, ipv6 = false,
   var ipaddr = ""
   if ipv6:
     for i in 0..<rng:
-      randomFields.add(randInRange(0, (1 shl 16 - 1)).toHex(4).toLower())
+      randomFields.add(unicode.toLower(randInRange(0, (1 shl 16 - 1)).toHex(4)))
     ipaddr = join(pfx & randomFields, ":")
   else:
     for i in 0..<rng:
@@ -236,7 +237,7 @@ proc genIpaddr*(ip3 = false, ipv6 = false,
   result = ipaddr
 
 proc genIpaddr*(ip3 = false, ipv6 = false,
-  prefix: openarray[int]): string {.noSideEffect.} =
+  prefix: openarray[int]): string =
   ## Generate a random IP address with a given prefix
   ##
   ## .. code-block:: nim
@@ -250,7 +251,7 @@ proc genIpaddr*(ip3 = false, ipv6 = false,
     pfx.add($i)
   result = genIpaddr(ip3, ipv6, pfx)
 
-proc genMac*(delimiter = ":"): string {.noSideEffect, inline.} =
+proc genMac*(delimiter = ":"): string {.inline.} =
   ## Generate a random MAC address with either ':' (default)
   ## or '-' as the delimiter
   ##
@@ -266,7 +267,7 @@ proc genMac*(delimiter = ":"): string {.noSideEffect, inline.} =
     result &= gensa(HexDigitsLower,2) & delimiter
   result = result[0..^2]
 
-proc genNetmask*(minCidr = 1, maxCidr = 31): string{.noSideEffect.} =
+proc genNetmask*(minCidr = 1, maxCidr = 31): string =
   ## Generate a random valid netmask
   ##
   ## .. code-block:: nim
@@ -276,7 +277,7 @@ proc genNetmask*(minCidr = 1, maxCidr = 31): string{.noSideEffect.} =
   assert(maxCidr < len(ValidNetmasks), "maxCidr must be < 32")
   result = ValidNetmasks[randInRange(minCidr, maxCidr)]
 
-proc genNumericString*(length = 10): string {.noSideEffect.} =
+proc genNumericString*(length = 10): string =
   ## Generate a random string made up of numbers
   ##
   ## .. code-block:: nim
@@ -287,7 +288,7 @@ proc genNumericString*(length = 10): string {.noSideEffect.} =
   for i in 0..<length:
     result = result & genChoice(['0','1','2','3','4','5','6','7','8','9'])
 
-proc genTime*(): TimeInfo {.noSideEffect.} =
+proc genTime*(): TimeInfo =
   ## Generate a random time and returns a TimeInfo object
   ##
   ## .. code-block::nim
@@ -303,13 +304,12 @@ proc genTime*(): TimeInfo {.noSideEffect.} =
     weekday: WeekDay(random(6)),
     yearday: random(365),
     isDst: genBool(),
-    tzname: "GMT",
+    # tzname: "GMT",
     timezone: 5
   )
   result = ti
 
-proc genUrl*(extended = false, internationalized = false): string {.
-  noSideEffect.} =
+proc genUrl*(extended = false, internationalized = false): string  =
   ## Generate a random URL. If `extended` is true, the URL scheme
   ## is generated from `ExSchemes` instead of `Schemes`. If
   ## `internationalized` is true, generates URL with interationalized TLD.
@@ -339,7 +339,7 @@ proc genUtf8*(length = 10): string =
   for i in 0..<length:
     result.add(genChoice(UnicodeLetters))
 
-proc genHtml*(length = 10): string {.noSideEffect.} =
+proc genHtml*(length = 10): string =
   ## Generate a random string made up of html characters
   ##
   ## .. code-block:: nim
@@ -350,7 +350,7 @@ proc genHtml*(length = 10): string {.noSideEffect.} =
   let htmlTag = genChoice(HtmlTags)
   result = "<$1>$2</$3>".format(htmlTag, genAlpha(length), htmlTag)
 
-proc genUuid*(valid = true): string {.noSideEffect.} =
+proc genUuid*(valid = true): string =
   ## Generate a random UUID
   ##
   ## `valid` makes sure some of it makes sense. It doesn't actually make
@@ -381,7 +381,7 @@ proc genUuid*(valid = true): string {.noSideEffect.} =
   let allParts = [part1, part2, part3, part4, part5]
   result = join(allParts, "-")
 
-proc asBytes*(s: string): seq[byte] {.noSideEffect.} =
+proc asBytes*(s: string): seq[byte] =
   ## Output some string as a byte sequence
   ## This can be combined with most of the fuzzing functions
   ##
